@@ -16,10 +16,12 @@ def create_parser():
 
 
 def get_most_frequent_words(text):
+    CONSTANT_WORDS_QUANTITY = 10
     words_list = text.split()
     words_count = Counter(
         map(lambda w: w.strip('",: .;?!*').lower(), words_list))
-    most_frequent_words_count = words_count.most_common(10)
+    most_frequent_words_count = \
+        words_count.most_common(CONSTANT_WORDS_QUANTITY)
     return list(map(lambda x: x[0], most_frequent_words_count))
 
 
