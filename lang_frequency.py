@@ -2,6 +2,9 @@ import argparse
 from collections import Counter
 
 
+CONSTANT_WORDS_QUANTITY = 10
+
+
 def load_data(filepath):
     with open(filepath, 'r', encoding='utf8') as file:
         return file.read()
@@ -16,7 +19,6 @@ def create_parser():
 
 
 def get_most_frequent_words(text):
-    CONSTANT_WORDS_QUANTITY = 10
     words_list = text.split()
     words_count = Counter(
         map(lambda w: w.strip('",: .;?!*').lower(), words_list))
