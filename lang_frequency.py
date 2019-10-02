@@ -1,4 +1,5 @@
 import argparse
+from collections import Counter
 
 
 def load_data(filepath):
@@ -16,19 +17,10 @@ def create_parser():
 
 def get_most_frequent_words(text):
     words_list = text.split()
-    words_dict = {}
-    for word in words_list:
-        word = word.strip('",: .;?!*').lower()
-        if word in words_dict.keys():
-            words_dict[word] = words_dict[word] + 1
-        else:
-            words_dict[word] = 1
-
-    most_frequent_words_frequencies = \
-        sorted(words_dict.items(), key=lambda x: x[1], reverse=True)[:10]
-    most_frequent_words = list(map(lambda x: x[0],
-                                   most_frequent_words_frequencies))
-    return most_frequent_words
+    words_count = Counter(
+        map(lambda w: w.strip('",: .;?!*').lower(), words_list))
+    most_frequent_words_count = words_count.most_common(10)
+    return list(map(lambda x: x[0], most_frequent_words_count))
 
 
 def main():
