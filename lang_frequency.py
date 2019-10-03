@@ -21,17 +21,21 @@ def create_parser():
 def get_most_frequent_words(text):
     words_list = text.split()
     words_count = Counter(
-        map(lambda w: w.strip('",: .;?!*').lower(), words_list))
+        [word.strip('",: .;?!*').lower() for word in words_list])
     most_frequent_words_count = \
         words_count.most_common(CONSTANT_WORDS_QUANTITY)
-    return list(map(lambda x: x[0], most_frequent_words_count))
+    return [word for word, count in most_frequent_words_count]
 
 
 def main():
     try:
         filepath = create_parser().filepath
-        text = load_data(filepath)
-        print('Most frequent words:', get_most_frequent_words(text))
+        text_from_file = load_data(filepath)
+        most_frequent_words = get_most_frequent_words(text_from_file)
+        print(CONSTANT_WORDS_QUANTITY,
+              'most frequent words in the text from your file are:')
+        for word in most_frequent_words:
+            print(word)
     except FileNotFoundError:
         exit('Файл не найден')
 
