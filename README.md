@@ -16,7 +16,17 @@ $ python lang_frequency.py <path to file>
 Example of script output:
 
 ```bash
-Most frequent words: ['to', 'a', 'the', 'and', 'you', 'python', 'is', 'or', 'in', 'of']
+10 most frequent words in the text from your file are:
+to
+a
+the
+and
+you
+python
+is
+or
+in
+of
 ```
 
 # Project Goals
